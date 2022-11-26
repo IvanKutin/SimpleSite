@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+        <!-- Example row of columns -->
+    <div class="row">
+        {% for i in purchases %}
+          <div class="col-md-4">
+            <h2>{{ i[0] }}</h2>
+            <h6>Категория: {{i[4]}} </h6>
+            <p>{{i[3]}}</p>
+            <p><a class="btn btn-secondary" href="/{{ i[5]}}" role="button">Просмотреть детали &raquo;</a></p>
+          </div>
+    {% endfor %}
+{% endblock %}

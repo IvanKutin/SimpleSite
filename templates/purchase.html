@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if buy == 1 %}
+<h4 style="text-align:center">Поздравляю,вы успешно купили товар!</h4>
+{% else %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">{{ purchase [0] }}</h5>
+      <p class="card-text"><small class="text-muted">Категория:{{ purchase [4] }}</small></p>
+    <p class="card-text">Цена:{{ purchase [1] }}  <br> {{ purchase [2] }} <br> {{ purchase [3] }}  </p>
+  </div>
+  {% if user %} {% if m %} <a href="/success_buy{{purchase[5]}}"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Купить товар</button></a> {% else %} <a href="/append{{purchase[5]}}"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Добавить в корзину</button></a> {% endif %} {% else %}
+  <h6 style="text-align:center">Чтобы добавить товар в свою корзину, авторизируйтесь</h6>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}
