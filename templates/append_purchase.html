@@ -96,53 +96,51 @@
  }
 }
 </style>
-<form method="post" style="text-align:center;margin-top:-40px" >
-<div class="bform py-5" style="text-align:center">
+<form method="post" style="text-align:center;margin-top:-40px">
+<div class="bform py-5">
  <!-- Row -->
  <div class="row">
  <div class="container">
  <div class="col-lg-6 align-justify-center pr-4 pl-0 contact-form">
  <div class="">
- <h1 class="mb-3 font-weight-light">Профиль</h1><br>
+  {% if add %} <h3>Вы успешно добавили товар </h3> <br>{% endif %}
+ <h2 class="mb-3 font-weight-light">Добавить товар</h2>
  <form class="mt-3">
  <div class="row">
  <div class="col-lg-12">
-   <div class="form-group">
-  <h3 class="mb-3 font-weight-light">Ваш Логин: {{user.login}} </h3>
- </div>
- </div>
-  </div>
-   <div class="col-lg-12">
- <a href ='/delete' class="btn btn-md btn-block btn-danger-gradiant text-white border-0">Выйти из аккаунта</a>
-{% if reg %} <br> <h4>Поздравляем, пароль успешно обновлен!</h4> {% else %}
- </div>
-  <div class="bform py-5" style="text-align:center">
- <h3 class="mb-3 font-weight-light" style="text-align: center">Смена пароля</h3>
- <form class="mt-3" method="post">
- <div class="row">
-
- <div class="col-lg-12">
  <div class="form-group">
- <input class="form-control" value="{{password}}" name="password" type="password" placeholder="Введите текущий пароль" {% if mistake1 %} style="border: 1px solid red"{% endif %}>{{mistake1}}
+ <input class="form-control" value="{{name}}" name="name" {% if mistake1 %} style="border: 1px solid red"{% endif %} placeholder="Название">
  </div>
  </div>
-     <div class="col-lg-12">
-    <div class="form-group">
-    <input class="form-control" value="{{password1}}" name="password1" type="password" placeholder="Введите новый пароль" {% if mistake2 %} style="border: 1px solid red"{% endif %}>{{mistake2}}
-    </div>
-    </div>
-     <div class="col-lg-12">
+ <div class="col-lg-6">
  <div class="form-group">
- <input class="form-control" value="{{password2}}" name="password2" type="password" placeholder="Повторите новый пароль" {% if mistake3 %} style="border: 1px solid red"{% endif %}>{{mistake3}}
+ <input class="form-control" value='{{cat}}' name="cat" {% if mistake2 %}  style="border: 1px solid red"{% endif %} placeholder="Категория">
  </div>
  </div>
-
+  <div class="col-lg-6">
+ <div class="form-group">
+ <input class="form-control" value='{{price}}' name="price" type="number" {% if mistake3 %}  style="border: 1px solid red"{% endif %} placeholder="Цена">
+ </div>
+ </div>
+  <div class="col-lg-6">
+ <div class="form-group">
+ <input class="form-control" value='{{small_info}}' name="small_info" {% if mistake4 %}  style="border: 1px solid red"{% endif %} placeholder="Небольшая информация">
+ </div>
+ </div>
+  <div class="col-lg-6">
+ <div class="form-group">
+     <textarea class="form-control" value='{{info}}' name="info" {% if mistake5 %}  style="border: 1px solid red" placeholder="Небольшая информация"{% endif %}></textarea>{{ mistake }}
+ </div>
+ </div>
+  <br>
+  <br>
  <div class="col-lg-12">
- <button type="submit" class="btn btn-md btn-block btn-danger-gradiant text-white border-0"><span>Сменить пароль</span></button>
- <!-- -->
+ <button type="submit" class="btn btn-md btn-block btn-danger-gradiant text-white border-0"><span>Добавить товар</span></button>
+ </div>
+ </div>
  </div>
  </form>
- </div>
+
  </div>
  </div>
  </div>
@@ -150,5 +148,5 @@
  </div>
 </div>
  </form>
-{% endif %}
+
 {% endblock %}

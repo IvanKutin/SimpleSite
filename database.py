@@ -12,13 +12,13 @@ class Database():
         )
         self.cur = self.con.cursor()
 
-    def register(self, login, hash):
-        self.cur.execute("INSERT INTO site_user (login,hash) VALUES (%s, %s)",
-                         (login, hash))
+    def register(self, login, hash, admn):
+        self.cur.execute("INSERT INTO site_user (login,hash,admn) VALUES (%s, %s, %s)",
+                         (login, hash, admn))
         self.con.commit()
 
     def all(self):
-        self.cur.execute("SELECT login,hash FROM site_user")
+        self.cur.execute("SELECT login,hash,admn FROM site_user")
         return self.cur.fetchall()
 
     def update(self, login, hash):
@@ -29,8 +29,20 @@ class Database():
         self.cur.execute("SELECT name,price,info,small_info,category,id FROM purchase")
         return self.cur.fetchall()
 
+    def add_purchase(self, name, cat, price, small_info, info, id):
+        self.cur.execute(
+            "INSERT INTO purchase (name,price,info,small_info,category,id) VALUES (%s, %s, %s, %s, %s, %s)",
+            (name, price, info, small_info, cat, id))
+        self.con.commit()
+
+    def delete(self, id):
+        self.cur.execute(
+            "DELETE FROM purchase where id = %s", [id])
+        self.con.commit()
+
 
 class User():
-    def __init__(self, login, hash):
+    def __init__(self, login, hash, admn):
         self.login = login
         self.hash = hash
+        self.admn = admn
