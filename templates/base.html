@@ -47,14 +47,14 @@
           </li>
           {% if user.admn %}
           <li class="nav-item active">
-            <a class="nav-link" href="/profile" style="margin-left:790px">Профиль Администратора<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/profile" style="margin-left:1050px">Профиль Администратора<span class="sr-only">(current)</span></a>
           {% else %}
             <li class="nav-item active">
-            <a class="nav-link" href="/profile" style="margin-left:900px">Профиль<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/profile" style="margin-left:1200px">Профиль<span class="sr-only">(current)</span></a>
           {% endif %}
           {% else %}
           <li class="nav-item active">
-            <a class="nav-link" href="/register" style="margin-left:860px">Регистрация<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/register" style="margin-left:1150px">Регистрация<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="/login">Авторизация<span class="sr-only">(current)</span></a>
@@ -62,8 +62,6 @@
           {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0" method="GET">
-          <input name="search" value="{{search}}" class="form-control mr-sm-2" type="text" placeholder="Название продукта" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
         </form>
       </div>
     </nav>

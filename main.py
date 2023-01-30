@@ -13,22 +13,35 @@ basket = []
 @app.route('/', methods=['GET', 'POST'])
 def index():
     global user
-    search = request.args.get('search')
+    search_name = request.args.get('search_name')
+    search_cat = request.args.get('search_cat')
     db = Database()
     purchases = db.all_purchase()
-    if search != None:
+    if search_name != None and search_name != '':
         i = 0
         j = 0
         k = len(purchases)
         while j < k:
-            if purchases[i][0] != search:
+            if purchases[i][0] != search_name:
                 purchases.remove(purchases[i])
             else:
                 i = i + 1
             j = j + 1
     else:
-        search = ''
-    context = {'user': user, 'purchases': purchases, 'search': search}
+        search_name = ''
+    if search_cat != None and search_cat != '':
+        i = 0
+        j = 0
+        k = len(purchases)
+        while j < k:
+            if purchases[i][4] != search_cat:
+                purchases.remove(purchases[i])
+            else:
+                i = i + 1
+            j = j + 1
+    else:
+        search_cat = ''
+    context = {'user': user, 'purchases': purchases, 'search_name': search_name, 'search_cat': search_cat}
     return render_template("main_page.html", **context)
 
 
@@ -155,23 +168,23 @@ def append_purchase():
 def my_basket():
     global user
     global basket
-    search = request.args.get('search')
+    search_name = request.args.get('search_name')
     basket1 = []
     for i in basket:
         basket1.append(i)
-    if search != None:
+    if search_name != None:
         i = 0
         j = 0
         k = len(basket1)
         while j < k:
-            if basket1[i][0] != search:
+            if basket1[i][0] != search_name:
                 basket1.remove(basket1[i])
             else:
                 i = i + 1
             j = j + 1
     else:
-        search = ''
-    context = {'user': user, 'purchases': basket1, 'search': search}
+        search_name = ''
+    context = {'user': user, 'purchases': basket1, 'search_name': search_name}
     return render_template("my_basket.html", **context)
 
 
@@ -262,7 +275,7 @@ def delete_purchase(id):
         context = {'user': user, 'delete': 1}
         return render_template("purchase.html", **context)
     else:
-         return ('NOT FOUND')
+        return ('NOT FOUND')
 
 
 @app.route('/success_buy<int:id>')
@@ -275,5 +288,8 @@ def success_buy(id):
     context = {'user': user, 'buy': 1}
     return render_template("purchase.html", **context)
 
+@app.route('/reset_value')
+def reset_value():
+    return redirect('/')
 
 app.run()

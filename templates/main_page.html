@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
 
 <style>
 @import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
@@ -95,34 +95,54 @@
  bottom: -95px;
  }
 }
+
+
+
 </style>
 <h1 style="text-align:center">Товары</h1>
 <br>
 {% if user.admn %}
 <div class="bform py-5">
- <div class="row">
- <div class="container">
- <div class="col-lg-6 align-justify-center pr-4 pl-0 contact-form">
- <div class="row">
- <div class="col-lg-12">
- <a href="/append_purchase"><button class="btn btn-md btn-block btn-danger-gradiant text-white border-0" style="margin-left:290px;margin-top:-50px" ><span>Добавить товар</span></button></a>
- </div>
- </div>
+    <div class="row">
+        <div class="container">
+            <div class="col-lg-6 align-justify-center pr-4 pl-0 contact-form">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="/append_purchase">
+                            <button class="btn btn-md btn-block btn-danger-gradiant text-white border-0"
+                                    style="margin-left:290px;margin-top:-50px"><span>Добавить товар</span></button>
+                        </a>
+                    </div>
+                </div>
 
- </div>
- </div>
- </div>
- </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endif %}
+
+<form class="form-inline">
+    <input type="text" class="form-control mb-2 mr-sm-2" value="{{search_name}}" name='search_name'
+           placeholder="Название" style="margin-left:450px">
+
+    <input type="text" class="form-control mb-2 mr-sm-2" value="{{search_cat}}" name="search_cat"
+           placeholder="Категория" style="margin-left:20px">
+
+
+    <button type="submit" class="btn btn-primary mb-2">Поиск</button>
+</form>
+<a href="/reset_value">
+    <button class="btn btn-primary mb-2" style="margin-left:1000px;bottom:46px; position:relative">Сбросить значения</button> </a>
+<br>
 <br>
 <div class="container">
     <div class="row">
         {% for i in purchases %}
-          <div class="col-md-4">
+        <div class="col-md-4">
             <h2>{{ i[0] }}</h2>
             <h6>Категория: {{i[4]}} </h6>
             <p>{{i[3]}}</p>
             <p><a class="btn btn-secondary" href="/{{ i[5]}}" role="button">Просмотреть детали &raquo;</a></p>
-          </div>
-    {% endfor %}
-{% endblock %}
+        </div>
+        {% endfor %}
+        {% endblock %}
